@@ -17,7 +17,7 @@ $server->setMessageHandler(function ($message) {
             return '收到文字消息：' . $message->Content;
             break;
         case 'image':
-            return '收到图片消息';
+            return '收到图片消息：' . $message->PicUrl;
             break;
         case 'voice':
             return '收到语音消息';
