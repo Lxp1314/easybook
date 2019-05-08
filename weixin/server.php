@@ -11,6 +11,12 @@ $server = $app->server;
 $server->setMessageHandler(function ($message) {
     switch ($message->MsgType) {
         case 'event':
+            switch ($message->Event){
+                case 'subscribe':
+                    return '感谢您的关注';
+                case 'unsubscribe':
+                    return '取消关注事件';
+            }
             return '收到事件消息';
             break;
         case 'text':
