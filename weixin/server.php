@@ -9,7 +9,8 @@ $options = include 'config.php';
 $app = new Application($options);
 $server = $app->server;
 $server->setMessageHandler(function ($message) {
-    return  "回复【{$message}】:亲，你来了，欢迎关注【易书在线】！";
+    $msg = json_decode($message);
+    return  "回复【{$msg->Content}】:亲，你来了，欢迎关注【测试公众号】！";
 });
 
 $response = $server->serve();
