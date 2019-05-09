@@ -20,6 +20,7 @@ $server->setMessageHandler(function ($message) {
             return '收到事件消息';
             break;
         case 'text':
+            loginfo($message->Content);
             return '收到文字消息：' . $message->Content;
             break;
         case 'image':
