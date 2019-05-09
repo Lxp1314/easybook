@@ -9,7 +9,7 @@ use Monolog\Handler\StreamHandler;
 // use Monolog\Formatter\JsonFormatter;
 
 $log = new Logger('name');
-$log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Logger::WARNING));
+$log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Logger::DEBUG));
 
 // add records to the log
 $log->addWarning('Foo');
