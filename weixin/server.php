@@ -37,7 +37,6 @@ $server->setMessageHandler(function ($message) {
         case 'link':
             return '收到链接消息';
             break;
-        // ... 其它消息
         default:
             return '收到其它消息';
             break;
