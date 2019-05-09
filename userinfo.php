@@ -7,6 +7,7 @@ $config = config('weixin');
 $app = new Application($config);
 $oauth = $app->oauth;
 
+session_start();
 // 未登录
 if (empty($_SESSION['wechat_user'])) {
 
