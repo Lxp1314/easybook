@@ -12,9 +12,9 @@ if (empty($_SESSION['wechat_user'])) {
 
     $_SESSION['target_url'] = '/userinfo.php';
   
-    return $oauth->redirect();
+    // return $oauth->redirect();
     // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
-    // $oauth->redirect()->send();
+    $oauth->redirect()->send();
 }
   
 // 已经登录过
