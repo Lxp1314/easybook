@@ -41,3 +41,14 @@ function logerror(){
     $log = new Log;
     $log->error($message);
 }
+
+/**
+ * 检查是否是微信端
+ */
+function isWechat(){
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+        return true;
+    }else{
+        return false;
+    }
+}
