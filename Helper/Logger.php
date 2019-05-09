@@ -14,4 +14,5 @@ $log->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Logger::WARNIN
 // add records to the log
 $log->addWarning('Foo');
 $log->addError('Bar');
+$log->info('My loger is no ready');
 echo '完成';
