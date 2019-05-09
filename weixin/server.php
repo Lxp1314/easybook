@@ -1,10 +1,10 @@
 <?php
 
-include __DIR__ . '/../vendor/autoload.php';
+include __DIR__ . '/../framework/autoload.php';
 
 use EasyWeChat\Foundation\Application;
 
-$options = include 'config.php';
+$options = config('weixin');
 
 $app = new Application($options);
 $server = $app->server;
