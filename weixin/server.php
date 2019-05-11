@@ -9,6 +9,7 @@ $options = config('weixin');
 $app = new Application($options);
 $server = $app->server;
 $server->setMessageHandler(function ($message) {
+    global $app;
     switch ($message->MsgType) {
         case 'event':
             switch ($message->Event){
@@ -20,8 +21,9 @@ $server->setMessageHandler(function ($message) {
             return '收到事件消息';
             break;
         case 'text':
-            loginfo($message->Content);
-            return '收到文字消息：' . $message->Content;
+            include 'msg_text.php';
+            $txt = new WeixinText($app, $message);
+            return $txt->dealMessage();
             break;
         case 'image':
             return '收到图片消息：' . $message->PicUrl;
