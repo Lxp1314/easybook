@@ -22,6 +22,7 @@ $server->setMessageHandler(function ($message) {
             break;
         case 'text':
             include 'msg_text.php';
+            // loginfo('1:' . json_encode($message));
             $txt = new WeixinText($app, $message);
             return $txt->dealMessage();
             break;

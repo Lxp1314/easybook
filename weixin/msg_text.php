@@ -13,13 +13,13 @@ class WeixinText{
     }
 
     public function dealMessage(){
-        switch($message->Content){
+        switch($this->message->Content){
             case '照片书':
                 /*-- 发送一条客服消息 --*/
-                $app->staff->message('转发您的海报，邀请朋友扫码关注我们，当人数达到5人时可以免费在小凡家洗照片20张[嘿哈]
-本活动限量1000份，领完即止')->by('tian_ci@kefu1')->to($message->FromUserName)->send();
+                $this->app->staff->message('转发您的海报，邀请朋友扫码关注我们，当人数达到5人时可以免费在小凡家洗照片20张[嘿哈]
+本活动限量1000份，领完即止')->by('tian_ci@kefu1')->to($this->message->FromUserName)->send();
                 //需要获取二维码
-                $wx_qrcode_content = $app->qrcode->temporary($message->FromUserName, 2592000);//生成一个30天后过期的二维码
+                $wx_qrcode_content = $this->app->qrcode->temporary($this->message->FromUserName, 2592000);//生成一个30天后过期的二维码
                 return "<img src='$wx_qrcode_content->url'/>";
                 break;
             case '格式':
@@ -31,7 +31,7 @@ class WeixinText{
             <a href="http://book.xiaofandiy.com/shop_celebrate.php">☞点我立即领"七月好礼"</a>';
             break;
             default:
-                return "收到消息：" . $message->Content;
+                return "收到消息：" . $this->message->Content;
                 break;
         }
     }
