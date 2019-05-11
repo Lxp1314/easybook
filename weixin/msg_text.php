@@ -24,8 +24,8 @@ class WeixinText{
                 break;
             case '格式':
                 return '老朋友，欢迎参加7月店庆
-                好礼/礼物/礼物免费赠活动
-                万分感谢一直以来对我的支持
+好礼/礼物/礼物免费赠活动
+    万分感谢一直以来对我的支持
                 礼物送上，数量有限尽快提交
 
             <a href="http://book.xiaofandiy.com/shop_celebrate.php">☞点我立即领"七月好礼"</a>';
