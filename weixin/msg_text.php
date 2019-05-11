@@ -21,19 +21,17 @@ class WeixinText{
                 //需要获取二维码
                 $wx_qrcode_content = $this->app->qrcode->temporary($this->message->FromUserName, 2592000);//生成一个30天后过期的二维码
                 return "<img src='$wx_qrcode_content->url'/>";
-                break;
             case '格式':
-                return '
+                return <<<EOF
 老朋友，欢迎参加7月店庆
 好礼/礼物/礼物免费赠活动
 万分感谢一直以来对我的支持
 礼物送上，数量有限尽快提交
 
-            <a href="http://book.xiaofandiy.com/shop_celebrate.php">☞点我立即领"七月好礼"</a>';
-            break;
+            <a href="http://book.xiaofandiy.com/shop_celebrate.php">☞点我立即领"七月好礼"</a>
+EOF;
             default:
                 return "收到消息：" . $this->message->Content;
-                break;
         }
     }
 
