@@ -96,8 +96,8 @@ EOF;
     private function msg3(){
         //生成一个永久二维码
         $wx_qrcode_content = $this->app->qrcode->forever($this->message->FromUserName);
-        $qrcode_url = $wx_qrcode_content->url;
-        // $qrcode_url = $this->app->qrcode->url($ticket);
+        // $qrcode_url = $wx_qrcode_content->url;
+        $qrcode_url = $this->app->qrcode->url($ticket);
 
         $content = file_get_contents($qrcode_url); // 得到二进制图片内容
         $qrcode_path = '../storages/images/promote_qrcode/' . $this->message->FromUserName . '.jpg';
