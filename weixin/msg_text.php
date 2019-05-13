@@ -97,7 +97,7 @@ EOF;
         //生成一个永久二维码
         $wx_qrcode_content = $this->app->qrcode->forever($this->message->FromUserName);
         // $qrcode_url = $wx_qrcode_content->url;
-        $qrcode_url = $this->app->qrcode->url($ticket);
+        $qrcode_url = $this->app->qrcode->url($wx_qrcode_content->ticket);//ticket换取二维码图片地址
 
         $content = file_get_contents($qrcode_url); // 得到二进制图片内容
         $qrcode_path = '../storages/images/promote_qrcode/' . $this->message->FromUserName . '.jpg';
