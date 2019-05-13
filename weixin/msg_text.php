@@ -58,7 +58,7 @@ EOF
         imagejpeg($im,$qCodePath);
 
         /*-- 将二维码贴到海报图上 --*/
-        $bigImgPath = "../resources/images/promote_qrcode/temp_img.jpg";//背景图片路径
+        $bigImgPath = "../resources/images/temp_img.jpg";//背景图片路径
         $bigImg = imagecreatefromstring(file_get_contents($bigImgPath));
         $qCodeImg = imagecreatefromstring(file_get_contents($qCodePath));
         imagecopymerge($bigImg, $qCodeImg, 760, 1026, 0, 0, 240, 240, 100);
