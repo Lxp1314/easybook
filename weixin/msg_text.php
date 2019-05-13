@@ -70,6 +70,9 @@ EOF
         $res_media = json_decode($res_media, true);
         $media_id = $res_media['media_id'];
 
+        //输出媒体id
+        $this->app->staff->message($media_id)->by('wuyun@kefu2')->to($this->message->FromUserName)->send();
+
         return new Image(['media_id' => $media_id]);
     }
 
@@ -91,6 +94,23 @@ EOF;
      * 二维码
      */
     private function msg3(){
+        //生成一个永久二维码
+        $wx_qrcode_content = $this->app->qrcode->forever($this->message->FromUserName);
+        $qrcode_url = $wx_qrcode_content->url;
+        // $qrcode_url = $this->app->qrcode->url($ticket);
 
+        $content = file_get_contents($qrcode_url); // 得到二进制图片内容
+        $qrcode_path = '../storages/images/promote_qrcode/' . $this->message->FromUserName . '.jpg';
+        file_put_contents($qrCode_path, $content); // 写入文件
+
+        /*-- 上传到素材 --*/
+        $res_media = $this->app->material_temporary->uploadImage($qrcode_path);
+        $res_media = json_decode($res_media, true);
+        $media_id = $res_media['media_id'];
+
+        //输出媒体id
+        $this->app->staff->message($media_id)->by('wuyun@kefu2')->to($this->message->FromUserName)->send();
+
+        return new Image(['media_id' => $media_id]);
     }
 }
