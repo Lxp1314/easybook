@@ -3,6 +3,7 @@
 use EasyWeChat\Foundation\Application;
 require_once '../QrCode/QrCode.php';
 use Endroid\QrCode\QrCode;
+use EasyWeChat\Message\Image;
 
 class WeixinText{
 
