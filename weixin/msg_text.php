@@ -51,7 +51,7 @@ EOF
             ->setBackgroundColor(array('r' => 0xff, 'g' => 0xff, 'b' => 0xff, 'a' => 1))
         ;
 
-        $qCodePath = '../images/promote_qrcode/' . md5($message->FromUserName) . '.jpg';
+        $qCodePath = '../images/promote_qrcode/' . md5($this->message->FromUserName) . '.jpg';
         $im = imagecreatetruecolor(240,  240);
         imageFill($im, 0, 0, imageColorAllocate($im, 0xff, 0xff ,0xff));
         imagecopy($im, $qrCode->getImage(), 10, 10, 0, 0, 220, 220);
