@@ -65,7 +65,7 @@ EOF
         imagejpeg($bigImg, $qCodePath);
 
         /*-- 上传到素材 --*/
-        $res_media = $app->material_temporary->uploadImage($qCodePath);
+        $res_media = $this->app->material_temporary->uploadImage($qCodePath);
         $res_media = json_decode($res_media, true);
         $media_id = $res_media['media_id'];
 
