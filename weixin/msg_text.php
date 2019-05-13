@@ -51,14 +51,14 @@ EOF
             ->setBackgroundColor(array('r' => 0xff, 'g' => 0xff, 'b' => 0xff, 'a' => 1))
         ;
 
-        $qCodePath = '../images/promote_qrcode/' . md5($this->message->FromUserName) . '.jpg';
+        $qCodePath = '../storages/images/promote_qrcode/' . md5($this->message->FromUserName) . '.jpg';
         $im = imagecreatetruecolor(240,  240);
         imageFill($im, 0, 0, imageColorAllocate($im, 0xff, 0xff ,0xff));
         imagecopy($im, $qrCode->getImage(), 10, 10, 0, 0, 220, 220);
         imagejpeg($im,$qCodePath);
 
         /*-- 将二维码贴到海报图上 --*/
-        $bigImgPath = "../images/promote_qrcode/temp_img.jpg";//背景图片路径
+        $bigImgPath = "../resources/images/promote_qrcode/temp_img.jpg";//背景图片路径
         $bigImg = imagecreatefromstring(file_get_contents($bigImgPath));
         $qCodeImg = imagecreatefromstring(file_get_contents($qCodePath));
         imagecopymerge($bigImg, $qCodeImg, 760, 1026, 0, 0, 240, 240, 100);
