@@ -1,6 +1,8 @@
 <?php
 
 use EasyWeChat\Foundation\Application;
+require_once '../QrCode/QrCode.php';
+use Endroid\QrCode\QrCode;
 
 class WeixinText{
 
@@ -40,8 +42,6 @@ EOF
         $wx_qrcode_content = $this->app->qrcode->temporary($this->message->FromUserName, 2592000);
         $qrcode_url = $wx_qrcode_content->url;
         /*-- 根据链接，生成一个二维码 --*/
-        require_once '../QrCode/QrCode.php';
-        use Endroid\QrCode\QrCode;
         $qrCode = new QrCode();
         $qrCode->setText($qrcode_url)
             ->setSize(220)
