@@ -12,4 +12,9 @@ foreach($tmp as $v){
         }
     }
 }
+
+unset($dir_config);
+unset($tmp);
+// var_dump($_CONFIG);
+return $_CONFIG;
 // var_dump($_CONFIG);
