@@ -11,13 +11,13 @@ if(isWechat()){
         // return $oauth->redirect();
         // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
         $app = require_once './weixin/app.php';
-        $oauth->redirect()->send();
+        $app->oauth->redirect()->send();
     }
       
     // 已经登录过
     $user = $_SESSION['wechat_user'];
     
-    var_dump($user);
+    echo json_encode($user);
 }else{
     echo '非微信端';
 }
