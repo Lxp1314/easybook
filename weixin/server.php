@@ -10,10 +10,9 @@ $app = new Application($options);
 $server = $app->server;
 $server->setMessageHandler(function ($message) {
     global $app;
-    $staffService = $this->app->staff;
-    $json_message = json_encode($this->message);
-    $openId = $this->message->FromUserName;
-    $staffService->message($json_message)
+    $staffService = $app->staff;//客服消息服务
+    $openId = $message->FromUserName;
+    $staffService->message(json_encode($message))
         // ->by('wuyun@test')
         ->to($oepnId)
         ->send();
