@@ -14,7 +14,7 @@ $server->setMessageHandler(function ($message) {
     $openId = $message->FromUserName;
     $staffService->message(json_encode($message))
         // ->by('wuyun@test')
-        ->to($oepnId)
+        ->to($openId)
         ->send();
     switch ($message->MsgType) {
         case 'event':
