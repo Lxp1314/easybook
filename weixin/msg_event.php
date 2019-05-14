@@ -33,11 +33,7 @@ class WeixinEvent{
      */
     private function subscribe(){
         $userService = $this->app->user;
-        $this->app
-            ->staff
-            ->message(json_encode($this->message))
-            ->by('wuyun@kefu2')
-            ->to($this->message->FromUserName)->send();
+        
         return '感谢您的关注';
     }
 

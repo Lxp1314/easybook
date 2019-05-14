@@ -37,7 +37,7 @@ class WeixinText{
 转发您的海报，邀请朋友扫码关注我们，当人数达到5人时可以免费在小凡家洗照片20张[嘿哈]
 本活动限量1000份，领完即止
 EOF
-        )->by('tian_ci@kefu1')->to($this->message->FromUserName)->send();
+        )->to($this->message->FromUserName)->send();
                         
         //生成一个30天后过期的二维码
         $wx_qrcode_content = $this->app->qrcode->temporary($this->message->FromUserName, 2592000);
@@ -71,7 +71,7 @@ EOF
         $media_id = $res_media['media_id'];
 
         //输出媒体id
-        $this->app->staff->message($media_id)->by('wuyun@kefu2')->to($this->message->FromUserName)->send();
+        $this->app->staff->message($media_id)->to($this->message->FromUserName)->send();
 
         return new Image(['media_id' => $media_id]);
     }
@@ -109,7 +109,7 @@ EOF;
         $media_id = $res_media['media_id'];
 
         //输出媒体id
-        $this->app->staff->message($media_id)->by('wuyun@kefu2')->to($this->message->FromUserName)->send();
+        $this->app->staff->message($media_id)->to($this->message->FromUserName)->send();
 
         return new Image(['media_id' => $media_id]);
     }
