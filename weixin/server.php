@@ -32,14 +32,42 @@ $server->setMessageHandler(function ($message) {
             return $event->dealEvent();
         case 'text':
             // $message的内容
-
+            // {
+            //     "ToUserName": "gh_712b3ff655bb",
+            //     "FromUserName": "oXfiP5lm2s4SXbtDDalXqebjM6iM",
+            //     "CreateTime": "1557802213",
+            //     "MsgType": "text",
+            //     "Content": "你好",
+            //     "MsgId": "22302368909933924"
+            // }
             require_once 'msg_text.php';
             $txt = new WeixinText($app, $message);
             return $txt->dealContent();
         case 'image':
+            // $message的内容
+            // {
+            //     "ToUserName": "gh_712b3ff655bb",
+            //     "FromUserName": "oXfiP5lm2s4SXbtDDalXqebjM6iM",
+            //     "CreateTime": "1557802574",
+            //     "MsgType": "image",
+            //     "PicUrl": "http:\/\/mmbiz.qpic.cn\/mmbiz_jpg\/wvUs691qMSSCyuIiam9n97ibnkL29m9gsnQqiaia9hjfLAPsI4HpibrnicmjYzkV3THw5icLTcrgfWgRqf9pqibibM6GVQw\/0",
+            //     "MsgId": "22302370543420374",
+            //     "MediaId": "PsX6qshm2IQA7nRm0dFtTnyzBYMu2zOVsvR6fgICx7xmKdR6EK5rkndwtlTwaMu2"
+            // }
             return '收到图片消息：' . $message->PicUrl;
             break;
         case 'voice':
+            // $message的内容
+            // {
+            //     "ToUserName": "gh_712b3ff655bb",
+            //     "FromUserName": "oXfiP5lm2s4SXbtDDalXqebjM6iM",
+            //     "CreateTime": "1557802766",
+            //     "MsgType": "voice",
+            //     "MediaId": "syJg-5heOVlzLcyJ6boDqKsDySBz9WPwTk4xtzNlGYbFoY-Hr43_Tq193eIsG-Vd",
+            //     "Format": "amr",
+            //     "MsgId": "22302371864173547",
+            //     "Recognition": null
+            // }
             return '收到语音消息';
             break;
         case 'video':

@@ -32,7 +32,6 @@ class WeixinEvent{
      * 关注事件
      */
     private function subscribe(){
-        $userService = $this->app->user;
         
         return '感谢您的关注';
     }

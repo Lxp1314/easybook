@@ -23,6 +23,8 @@ class WeixinText{
                 return $this->msg2();
             case '二维码':
                 return $this->msg3();
+            case '用户信息':
+                return $this->msg4();
             default:
                 return "收到消息：" . $this->message->Content;
         }
@@ -112,5 +114,17 @@ EOF;
         $this->app->staff->message($media_id)->to($this->message->FromUserName)->send();
 
         return new Image(['media_id' => $media_id]);
+    }
+
+    private function msg4(){
+        $userService = $this->app->user;
+        $openId = $this->message->FromUserName;
+        $user = $userService->get($openId);
+        $staffService = $this->app->staff;
+        $staffService->message(json_encode($user))
+            ->to($openId)
+            ->send();
+        
+        return $user->nickname;
     }
 }
