@@ -15,7 +15,7 @@ class WeixinText{
         $this->message = $message;
     }
 
-    public function dealMessage(){
+    public function dealContent(){
         switch($this->message->Content){
             case '照片书':
                 return $this->msg1();
@@ -101,7 +101,7 @@ EOF;
 
         $content = file_get_contents($qrcode_url); // 得到二进制图片内容
         $qrcode_path = '../storages/images/promote_qrcode/' . $this->message->FromUserName . '.jpg';
-        file_put_contents($qrCode_path, $content); // 写入文件
+        file_put_contents($qrcode_path, $content); // 写入文件
 
         /*-- 上传到素材 --*/
         $res_media = $this->app->material_temporary->uploadImage($qrcode_path);

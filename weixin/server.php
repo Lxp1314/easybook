@@ -12,20 +12,13 @@ $server->setMessageHandler(function ($message) {
     global $app;
     switch ($message->MsgType) {
         case 'event':
-            switch ($message->Event){
-                case 'subscribe':
-                    return '感谢您的关注';
-                case 'unsubscribe':
-                    return '取消关注事件';
-            }
-            return '收到事件消息';
-            break;
+            $event = new WeixinEvent($app, $message);
+            return $event->dealEvent();
         case 'text':
             include 'msg_text.php';
             // loginfo('1:' . json_encode($message));
             $txt = new WeixinText($app, $message);
-            return $txt->dealMessage();
-            break;
+            return $txt->dealContent();
         case 'image':
             return '收到图片消息：' . $message->PicUrl;
             break;
