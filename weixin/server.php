@@ -12,11 +12,11 @@ $server->setMessageHandler(function ($message) {
     global $app;
     switch ($message->MsgType) {
         case 'event':
+            require_once 'msg_event.php';
             $event = new WeixinEvent($app, $message);
             return $event->dealEvent();
         case 'text':
-            include 'msg_text.php';
-            // loginfo('1:' . json_encode($message));
+            require_once 'msg_text.php';
             $txt = new WeixinText($app, $message);
             return $txt->dealContent();
         case 'image':
