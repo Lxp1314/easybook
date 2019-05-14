@@ -2,8 +2,7 @@
 
 define('APP_START', microtime(true));
 
-include __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-include 'app.php';
-
-include 'helpers.php';
+require_once 'app.php';
+require_once 'helpers.php';
