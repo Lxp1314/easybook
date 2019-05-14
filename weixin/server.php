@@ -16,6 +16,27 @@ $server->setMessageHandler(function ($message) {
         // ->by('wuyun@test')
         ->to($openId)
         ->send();
+
+        // 用户信息 $app->user->get($message->FromUserName);
+        // {
+        //     "subscribe": 1,
+        //     "openid": "oXfiP5lm2s4SXbtDDalXqebjM6iM",
+        //     "nickname": "刘海云",
+        //     "sex": 1,
+        //     "language": "zh_CN",
+        //     "city": "昌平",
+        //     "province": "北京",
+        //     "country": "中国",
+        //     "headimgurl": "http:\/\/thirdwx.qlogo.cn\/mmopen\/RiceC3to0Ane1BPZcsjnNDGLiaeR9QPoSDkouB6ckqN0wSd7iaMQ92kzibsV63Z769GmTiaFVnBUKaaTFI3BOPJaYZIK7DA6N2Bich\/132",
+        //     "subscribe_time": 1557799175,
+        //     "remark": "",
+        //     "groupid": 0,
+        //     "tagid_list": [],
+        //     "subscribe_scene": "ADD_SCENE_QR_CODE",
+        //     "qr_scene": 0,
+        //     "qr_scene_str": ""
+        // }
+    
     switch ($message->MsgType) {
         case 'event':
             // $message的内容

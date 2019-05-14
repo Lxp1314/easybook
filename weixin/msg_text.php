@@ -17,7 +17,7 @@ class WeixinText{
 
     public function dealContent(){
         switch($this->message->Content){
-            case '照片书':
+            case '二维码海报':
                 return $this->msg1();
             case '格式':
                 return $this->msg2();
