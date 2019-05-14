@@ -1,12 +1,6 @@
 <?php
 
-include __DIR__ . '/../framework/autoload.php';
-
-use EasyWeChat\Foundation\Application;
-
-$options = config('weixin');
-
-$app = new Application($options);
+$app = include 'app.php';
 $server = $app->server;
 $server->setMessageHandler(function ($message) {
     global $app;

@@ -22,6 +22,16 @@ class WeixinEvent{
                 return $this->unsubscribe();
             case 'SCAN':
                 //扫码
+                // $this-message的信息
+                // {
+                //     "ToUserName": "gh_712b3ff655bb",
+                //     "FromUserName": "oXfiP5lm2s4SXbtDDalXqebjM6iM",
+                //     "CreateTime": "1557805270",
+                //     "MsgType": "event",
+                //     "Event": "SCAN",
+                //     "EventKey": "oXfiP5lm2s4SXbtDDalXqebjM6iM",
+                //     "Ticket": "gQFM8TwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyTDRVN1J6dFVlZkMxMDAwMDAwN1YAAgTPTNlcAwQAAAAA"
+                // }
                 return $this->scan();
             default:
                 return '未知事件' . $this->message->Event;

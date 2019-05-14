@@ -1,11 +1,5 @@
 <?php
-include __DIR__ . '/framework/autoload.php';
-
-use EasyWeChat\Foundation\Application;
-
-$config = config('weixin');
-$app = new Application($config);
-$oauth = $app->oauth;
+require_once __DIR__ . '/framework/autoload.php';
 
 if(isWechat()){
     session_start();
@@ -16,6 +10,7 @@ if(isWechat()){
       
         // return $oauth->redirect();
         // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
+        $app = require_once './weixin/app.php';
         $oauth->redirect()->send();
     }
       
