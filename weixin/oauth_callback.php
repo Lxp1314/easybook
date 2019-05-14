@@ -1,5 +1,5 @@
 <?php
-$app = require_once '/app.php';
+$app = require_once 'app.php';
 $oauth = $app->oauth;
 $user = $oauth->user();
 
