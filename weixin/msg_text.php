@@ -116,6 +116,9 @@ EOF;
         return new Image(['media_id' => $media_id]);
     }
 
+    /**
+     * 用户信息
+     */
     private function msg4(){
         $userService = $this->app->user;
         $openId = $this->message->FromUserName;

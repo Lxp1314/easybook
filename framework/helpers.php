@@ -27,7 +27,6 @@ include 'Log.php';
 use framework\Log;
 
 function loginfo($message){
-    // use \framework\Log;
     $log = new Log;
     $log->info($message);
 }
