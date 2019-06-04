@@ -126,10 +126,35 @@ $jsApis = [
         }
 
         function previewImage(){
+            // 预览图片接口
             wx.previewImage({
                 current: 'http://weixin.windmax.cn/resources/images/renwu1.jpg', // 当前显示图片的http链接
                 urls: ['http://weixin.windmax.cn/resources/images/renwu1.jpg', 'http://weixin.windmax.cn/resources/images/renwu2.jpg','http://weixin.windmax.cn/resources/images/renwu3.jpg'] // 需要预览的图片http链接列表
             });
+        }
+
+        function uploadImage(index){
+            if(index>8 || index<0){
+                alert('超出范围'+index);
+            }
+
+            var localId = document.getElementById("img"+index).src;
+            if(localId.length>0){
+                wx.uploadImage({
+                    localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        var serverId = res.serverId; // 返回图片的服务器端ID
+                        document.getElementById("info").innerText = document.getElementById("zoom_tips").innerText + serverId;
+                        if(index<8){
+                            uploadImage(++index);
+                        }
+                    }
+                });
+            }else{
+                alert('图片src不存在：' + index);
+                break;
+            }
         }
     </script>
     <img id="img0" />
@@ -142,7 +167,9 @@ $jsApis = [
     <img id="img7" />
     <img id="img8" />
     
-    <button onclick="chooseImage()">上传</button>
+    <button onclick="chooseImage()">选择</button>
     <button onclick="previewImage()">预览</button>
+    <button onclick="uploadImage()">上传<button>
+    <div id="info"></div>
 </body>
 </html>
