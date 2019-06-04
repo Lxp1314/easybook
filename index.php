@@ -37,7 +37,18 @@ $app = require __DIR__.'/weixin/app.php';
         //     signature: '',// 必填，签名
         //     jsApiList: [] // 必填，需要使用的JS接口列表
         // });
-        wx.config(<?php echo $app->js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true) ?>);
+        wx.config(<?php echo $app->js->config(array('chooseImage', 'onMenuShareQQ', 'onMenuShareWeibo'), true) ?>);
+        wx.ready(function(){
+            wx.updateAppMessageShareData({ 
+                title: '测试分享', // 分享标题
+                desc: '测试分享描述', // 分享描述
+                link: 'http://weixin.windmax.cn/index.php', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://weixin.windmax.cn/resources/images/temp_img.jpg', // 分享图标
+                success: function () {
+                // 设置成功
+                }
+            })
+        });
     </script>
     <button>shangchuan</button>
 </body>
