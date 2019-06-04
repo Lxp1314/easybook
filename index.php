@@ -68,7 +68,10 @@ $jsApis = [
 
     <style type="text/css">
         body{
-            background-color: white;
+            background-color: black;
+        }
+        img{
+            width:33.33%;
         }
     </style>
 </head>
@@ -112,16 +115,30 @@ $jsApis = [
         
         function chooseImage(){
             wx.chooseImage({
-                count: 1, // 默认9
-                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                count: 9, // 默认9，一次可选择几张照片
+                sizeType: ['original'], // 可以指定是原图original还是压缩图compressed，默认二者都有
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
                     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                    for(var i=1; i<=localIds.length; i++){
+                        if(i<4){
+                            document.getElementById("img"+i).src = localIds[i];
+                        }
+                    }
                 }
             });
         }
     </script>
     <img id="img1" />
+    <img id="img2" />
+    <img id="img3" />
+    <img id="img4" />
+    <img id="img5" />
+    <img id="img6" />
+    <img id="img7" />
+    <img id="img8" />
+    <img id="img9" />
+
     <button onclick="chooseImage()">shangchuan</button>
 </body>
 </html>
