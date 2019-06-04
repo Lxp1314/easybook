@@ -16,28 +16,5 @@
 </head>
 
 <body>
-    <div id="div_drag" style="width:100px; height:100px; background-color:#efefef;position: absolute;" draggable="true"></div>
-    <script>
-    window.onload = function(){
-        var ele = document.getElementById("div_drag");
-        ele.ondragstart = function(ev){
-            console.log('ondragstart：拖动开始');
-            console.log(ev);
-            console.log('x:' + ev.x + ',y:' + ev.y);
-
-            console.log(ev.srcElement.style.top);
-            // console.log(ev.target.style.top);
-        }
-        ele.ondragend = function(ev){
-            console.log('ondragend：拖动结束');
-            console.log(ev);
-            console.log('x:' + ev.x + ',y:' + ev.y);
-            ev.srcElement.style.left = ev.x + 'px';
-            ev.srcElement.style.top = ev.y + 'px';
-        }
-
-    }
-    </script>
-    
 </body>
 </html>
