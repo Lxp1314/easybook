@@ -5,7 +5,7 @@ class ImageDownload{
         loginfo($media_id);
         $app = require __DIR__.'/./app.php';
         $temporary = $app->material_temporary;
-        $temporary->download($media_id, "../storages/images/uploads/", $media_id.".jpg");
+        $temporary->download($media_id, "../storages/images/uploads/", $media_id);//会默认加.jpg
         // $content = $temporary->getStream($media_id);
         // $path = '/storages/images/uploads/' . $media_id . '.jpg';
         // file_put_contents('..' . $path, $contents);
