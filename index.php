@@ -10,7 +10,8 @@ if(isWechat()){
 }
 
 $app = require __DIR__.'/weixin/app.php';
-// $app->jssdk->buildConfig(array $APIs, $debug = false, $beta = false, $json = true);
+$configs = $app->jssdk->buildConfig(array('onMenuShareQQ', 'onMenuShareWeibo'), $debug = true, $beta = false, $json = false);
+var_dump($configs);die;
 ?>
 <!DOCTYPE html>
 <html>
