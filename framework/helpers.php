@@ -31,12 +31,12 @@ function loginfo($message){
     $log->info($message);
 }
 
-function logdebug(){
+function logdebug($message){
     $log = new Log;
     $log->debug($message);
 }
 
-function logerror(){
+function logerror($message){
     $log = new Log;
     $log->error($message);
 }

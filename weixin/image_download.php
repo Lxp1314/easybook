@@ -2,6 +2,7 @@
 
 class ImageDownload{
     public static function download($media_id){
+        loginfo($media_id);
         $app = require __DIR__.'/./app.php';
         $temporary = $app->material_temporary;
         $temporary->download($media_id, "../storages/images/uploads/", $media_id.".jpg");

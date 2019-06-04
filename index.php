@@ -173,7 +173,7 @@ $jsApis = [
                     }
                 });
             }else{
-                alert('图片src不存在：' + index);
+                // alert('图片src不存在：' + index);
             }
         }
     </script>
