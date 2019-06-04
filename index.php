@@ -124,6 +124,13 @@ $jsApis = [
                 }
             });
         }
+
+        function previewImage(){
+            wx.previewImage({
+            current: 'http://weixin.windmax.cn/resources/renwu1.jpg', // 当前显示图片的http链接
+            urls: ['http://weixin.windmax.cn/resources/renwu2.jpg','http://weixin.windmax.cn/resources/renwu3.jpg'] // 需要预览的图片http链接列表
+            });
+        }
     </script>
     <img id="img0" />
     <img id="img1" />
@@ -135,7 +142,7 @@ $jsApis = [
     <img id="img7" />
     <img id="img8" />
     
-
-    <button onclick="chooseImage()">shangchuan</button>
+    <button onclick="chooseImage()">上传</button>
+    <button onclick="previewImage()">预览</button>
 </body>
 </html>
