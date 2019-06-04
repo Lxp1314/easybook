@@ -52,6 +52,9 @@ $jsApis = [
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
     <title>测试页面</title>
 
     <link rel="stylesheet" href="./css/bulma.min.css">
@@ -62,6 +65,12 @@ $jsApis = [
     <script src="./js/plugin/layui/layer/layer.js"></script>
     <script src="./js/clipboard.min.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+
+    <style type="text/css">
+        body{
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -82,7 +91,7 @@ $jsApis = [
                 link: 'http://weixin.windmax.cn/index.php', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'http://weixin.windmax.cn/resources/images/temp_img.jpg', // 分享图标
                 success: function () {
-                // 设置成功
+                // 页面进入时的设置成功，而非分享成功后的回调
                     console.log('分享成功updateTimelineShareData');
                     alert('分型成功updateTimelineShareData');
                 }
@@ -94,13 +103,25 @@ $jsApis = [
                 link: 'http://weixin.windmax.cn/index.php', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'http://weixin.windmax.cn/resources/images/temp_img.jpg', // 分享图标
                 success: function () {
-                // 设置成功
+                    // 页面进入时的设置成功，而非分享成功后的回调
                     console.log('分享成功updateAppMessageShareData');
                     alert('分享成功updateAppMessageShareData');
                 }
             });
         });
+        
+        function chooseImage(){
+            wx.chooseImage({
+                count: 1, // 默认9
+                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                }
+            });
+        }
     </script>
-    <button>shangchuan</button>
+    <img id="img1" />
+    <button onclick="chooseImage()">shangchuan</button>
 </body>
 </html>
