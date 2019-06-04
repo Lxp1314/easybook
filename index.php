@@ -1,4 +1,14 @@
 <?php
+require_once __DIR__ . '/framework/autoload.php';
+require_once __DIR__ . '/weixin/oauth.php';
+
+if(isWechat()){
+    session_start();
+    $user = Oauth::login('/userinfo.php');
+}else{
+    // echo '非微信端';
+    die('请在微信端打开页面');
+}
 
 $app = require __DIR__.'/weixin/app.php';
 // $app->jssdk->buildConfig(array $APIs, $debug = false, $beta = false, $json = true);
