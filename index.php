@@ -1,5 +1,6 @@
 <?php
 
+$app = require __DIR__.'/weixin/app.php';
 // $app->jssdk->buildConfig(array $APIs, $debug = false, $beta = false, $json = true);
 ?>
 <!DOCTYPE html>
