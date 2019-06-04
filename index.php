@@ -10,8 +10,6 @@ if(isWechat()){
 }
 
 $app = require __DIR__.'/weixin/app.php';
-$configs = $app->jssdk->buildConfig(array('onMenuShareQQ', 'onMenuShareWeibo'), $debug = true, $beta = false, $json = false);
-var_dump($configs);die;
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +37,7 @@ var_dump($configs);die;
         //     signature: '',// 必填，签名
         //     jsApiList: [] // 必填，需要使用的JS接口列表
         // });
-        wx.config(<?php echo $app->jssdk->buildConfig(array('onMenuShareQQ', 'onMenuShareWeibo'), true) ?>);
+        wx.config(<?php echo $app->js->config(array('onMenuShareQQ', 'onMenuShareWeibo'), true) ?>);
     </script>
     <button>shangchuan</button>
 </body>
