@@ -147,14 +147,14 @@ $jsApis = [
                         var serverId = res.serverId; // 返回图片的服务器端ID
                         
                         $.ajax({
-                            type: "post",
-                            url: "http://weixin.windmax.cn/api/index.php",
-                            dataType: "json",
-                            async: true,
-                            data: {
-                                action: 'wx_image_upload',
-                                media_id: serverId
-                            },
+                            type: "get",
+                            url: "http://weixin.windmax.cn/api/index.php?action=wx_image_upload&media_id="+serverId,
+                            // dataType: "json",
+                            // async: true,
+                            // data: {
+                            //     action: 'wx_image_upload',
+                            //     media_id: serverId
+                            // },
                             beforeSend: function () {
                             },
                             success: function (json) {
