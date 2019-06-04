@@ -118,7 +118,7 @@ $jsApis = [
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
                     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                    for(var i=1; i<localIds.length; i++){
+                    for(var i=0; i<localIds.length; i++){
                         document.getElementById("img"+i).src = localIds[i];
                     }
                 }
