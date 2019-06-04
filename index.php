@@ -153,7 +153,6 @@ $jsApis = [
                 });
             }else{
                 alert('图片src不存在：' + index);
-                break;
             }
         }
     </script>
@@ -170,6 +169,7 @@ $jsApis = [
     <button onclick="chooseImage()">选择</button>
     <button onclick="previewImage()">预览</button>
     <button onclick="uploadImage(0)">上传<button>
+    
     <div id="info"></div>
 </body>
 </html>
