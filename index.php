@@ -145,6 +145,26 @@ $jsApis = [
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         var serverId = res.serverId; // 返回图片的服务器端ID
+                        
+                        $.ajax({
+                            type: "post",
+                            url: "http://weixin.windmax.cn/api/index.php",
+                            dataType: "json",
+                            async: true,
+                            data: {
+                                action: 'wx_image_upload',
+                                media_id: serverId
+                            },
+                            beforeSend: function () {
+                            },
+                            success: function (json) {
+                                alert(json.data);
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                console.log("请求数据异常：" + errorThrown);
+                            }
+                        });
+
                         document.getElementById("info").innerText = serverId;
                         if(index<8){
                             index++;

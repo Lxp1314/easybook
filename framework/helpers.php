@@ -51,3 +51,22 @@ function isWechat(){
         return false;
     }
 }
+
+/**
+ * 输出json
+ * $data 数据
+ * $statusCode 状态码，默认200
+ * $message 信息提示，默认ok
+ */
+function responseJson($statusCode = 200, $message = 'ok', $data = ''){
+    $json = [
+        'status_code' => (int)$statusCode,
+        'message' => $message,
+    ];
+    if(!empty($data)){
+        $json['data'] = $data;
+    }
+    header('Content-type:application/json');
+    echo json_encode($json);
+    die;
+}
