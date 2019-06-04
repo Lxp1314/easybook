@@ -9,7 +9,7 @@ class Oauth{
         if (empty($_SESSION['wechat_user'])) {
             // 设置回调地址
             $_SESSION['target_url'] = $call_back;
-            $app = require './app.php';
+            $app = require __DIR__.'/./app.php';
             $app->oauth->redirect()->send();
             die;
         }
