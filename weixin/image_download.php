@@ -3,7 +3,9 @@
 class ImageDownload{
     public static function download($media_id){
         $app = require __DIR__.'/./app.php';
-        $content = $app->material_temporary->getStream($media_id);
+        $temporary = $app->material_temporary;
+        $temporary->download($mediaId, "/tmp/", "abc.jpg");
+        $content = $temporary->getStream($media_id);
         $path = '/storages/images/uploads/' . $media_id . '.jpg';
         file_put_contents('..' . $path, $contents);
         return 'http://weixin.windmax.cn' . $path;
