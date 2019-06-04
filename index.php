@@ -115,15 +115,13 @@ $jsApis = [
         
         function chooseImage(){
             wx.chooseImage({
-                count: 9, // 默认9，一次可选择几张照片
+                count: 10, // 默认9，一次可选择几张照片
                 sizeType: ['original'], // 可以指定是原图original还是压缩图compressed，默认二者都有
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
                     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
                     for(var i=1; i<=localIds.length; i++){
-                        if(i<4){
-                            document.getElementById("img"+i).src = localIds[i];
-                        }
+                        document.getElementById("img"+i).src = localIds[i];
                     }
                 }
             });
