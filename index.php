@@ -75,15 +75,30 @@ $jsApis = [
         // });
         wx.config(<?php echo $app->js->config($jsApis, true) ?>);
         wx.ready(function(){
+            // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）
             wx.updateTimelineShareData({ 
-                title: '测试分享', // 分享标题
+                title: '测试分享到朋友圈、分享到QQ空间', // 分享标题
                 desc: '测试分享描述', // 分享描述
                 link: 'http://weixin.windmax.cn/index.php', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'http://weixin.windmax.cn/resources/images/temp_img.jpg', // 分享图标
                 success: function () {
                 // 设置成功
+                    console.log('分享成功updateTimelineShareData');
+                    alert('分型成功updateTimelineShareData');
                 }
-            })
+            });
+            // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
+            wx.updateAppMessageShareData({ 
+                title: '测试分享给朋友、分享到QQ', // 分享标题
+                desc: '测试分享描述', // 分享描述
+                link: 'http://weixin.windmax.cn/index.php', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: 'http://weixin.windmax.cn/resources/images/temp_img.jpg', // 分享图标
+                success: function () {
+                // 设置成功
+                    console.log('分享成功updateAppMessageShareData');
+                    alert('分享成功updateAppMessageShareData');
+                }
+            });
         });
     </script>
     <button>shangchuan</button>
