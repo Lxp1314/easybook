@@ -1,4 +1,7 @@
-/logs
-/vendor
-/storages
-/test
+logs
+vendor
+storages
+test
+error
+.htaccess
+composer.lock
