@@ -127,8 +127,8 @@ $jsApis = [
 
         function previewImage(){
             wx.previewImage({
-            current: 'http://weixin.windmax.cn/resources/renwu1.jpg', // 当前显示图片的http链接
-            urls: ['http://weixin.windmax.cn/resources/renwu2.jpg','http://weixin.windmax.cn/resources/renwu3.jpg'] // 需要预览的图片http链接列表
+            current: 'http://weixin.windmax.cn/resources/images/renwu1.jpg', // 当前显示图片的http链接
+            urls: ['http://weixin.windmax.cn/resources/images/renwu2.jpg','http://weixin.windmax.cn/resources/images/renwu3.jpg'] // 需要预览的图片http链接列表
             });
         }
     </script>
