@@ -71,7 +71,7 @@ $jsApis = [
             background-color: black;
         }
         img{
-            width:33.33%;
+            width:32%;
         }
     </style>
 </head>
@@ -96,7 +96,6 @@ $jsApis = [
                 success: function () {
                 // 页面进入时的设置成功，而非分享成功后的回调
                     console.log('分享成功updateTimelineShareData');
-                    alert('分型成功updateTimelineShareData');
                 }
             });
             // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容（1.4.0）
@@ -108,7 +107,6 @@ $jsApis = [
                 success: function () {
                     // 页面进入时的设置成功，而非分享成功后的回调
                     console.log('分享成功updateAppMessageShareData');
-                    alert('分享成功updateAppMessageShareData');
                 }
             });
         });
@@ -120,13 +118,14 @@ $jsApis = [
                 sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
                 success: function (res) {
                     var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-                    for(var i=1; i<=localIds.length; i++){
+                    for(var i=1; i<localIds.length; i++){
                         document.getElementById("img"+i).src = localIds[i];
                     }
                 }
             });
         }
     </script>
+    <img id="img0" />
     <img id="img1" />
     <img id="img2" />
     <img id="img3" />
@@ -135,7 +134,7 @@ $jsApis = [
     <img id="img6" />
     <img id="img7" />
     <img id="img8" />
-    <img id="img9" />
+    
 
     <button onclick="chooseImage()">shangchuan</button>
 </body>
