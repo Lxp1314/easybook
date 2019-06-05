@@ -38,7 +38,7 @@ $jsApis = [
     'showMenuItems',
     'hideAllNonBaseMenuItem',
     'showAllNonBaseMenuItem',
-    'closeWindow',
+    // 'closeWindow',
     'scanQRCode',
     'chooseWXPay',
     'openProductSpecificView',
@@ -109,6 +109,12 @@ $jsApis = [
                     console.log('分享成功updateAppMessageShareData');
                 }
             });
+            //判断是否是wkwebview
+            if(window.wxjs_is_wkwebview){
+                document.getElementById("input1").value = 'true';
+            }else{
+                document.getElementById("input1").value = 'false';
+            }
         });
         
         function chooseImage(){
@@ -176,7 +182,11 @@ $jsApis = [
                 // alert('图片src不存在：' + index);
             }
         }
+        function uploadBase64Image(){
+
+        }
     </script>
+    <input type="text" id="input1" value="123" />
     <img id="img0" />
     <img id="img1" />
     <img id="img2" />
@@ -190,6 +200,7 @@ $jsApis = [
     <button onclick="chooseImage()">选择</button>
     <button onclick="previewImage()">预览</button>
     <button onclick="uploadImage(0)">上传<button>
+    <button onclick="uploadBase64Image()">上传Base64</button>
     
     <div id="info"></div>
 </body>
