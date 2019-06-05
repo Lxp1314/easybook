@@ -131,6 +131,26 @@ $jsApis = [
             });
         }
 
+        function chooseBase64Image(){
+            wx.chooseImage({
+                count: 10, // 默认9，一次可选择几张照片
+                sizeType: ['original'], // 可以指定是原图original还是压缩图compressed，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                    for(var i=0; i<localIds.length; i++){
+                        wx.getLocalImgData({
+                            localId: localIds[i],
+                            success: function(res) {
+                                var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                                document.getElementById("img"+i).src = localData;
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
         function previewImage(){
             // 预览图片接口
             wx.previewImage({
@@ -198,8 +218,9 @@ $jsApis = [
     <img id="img8" />
     
     <button onclick="chooseImage()">选择</button>
+    <button onclick="chooseBase64Image()">选择Base64</button>
     <button onclick="previewImage()">预览</button>
-    <button onclick="uploadImage(0)">上传<button>
+    <button onclick="uploadImage(0)">上传</button>
     <button onclick="uploadBase64Image()">上传Base64</button>
     
     <div id="info"></div>
