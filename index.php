@@ -223,6 +223,7 @@ $jsApis = [
         }
         function showOneId(){
             document.getElementById('imgOne').src = document.getElementById('inputOne').value;
+            document.getElementById("info").innerText = document.getElementById('inputOne').value;
         }
         function showOneBase64(){
             wx.getLocalImgData({
@@ -230,6 +231,7 @@ $jsApis = [
                 success: function(res) {
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                     document.getElementById("imgOne").src = localData;
+                    document.getElementById("info").innerText = localData;
                 }
             });
         }
