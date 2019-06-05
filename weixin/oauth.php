@@ -3,10 +3,12 @@
 class Oauth{
     /**
      * 返回微信授权用户信息
+     * $call_back 授权成功回调页面
+     * $userinfo 是否显示授权，默认静默授权
      */
-    public static function login($call_back, $base = false){
+    public static function login($call_back, $userinfo = false){
         $session_id = 'wechat_user';
-        $scope = $base ? 'snsapi_base' : 'snsapi_userinfo';
+        $scope = $userinfo ? 'snsapi_userinfo' : 'snsapi_base';
         $newOauth = false;//重新发起授权
         if(empty($_SESSION['scope']) || $_SESSION['scope'] !== $scope){
             $_SESSION['scope'] = $scope;
@@ -17,8 +19,8 @@ class Oauth{
             // 设置回调地址
             $_SESSION['target_url'] = $call_back;
             $app = require __DIR__.'/./app.php';
-            if($base){
-                $app->oauth->scopes(['snsapi_base']);
+            if($userinfo){
+                $app->oauth->scopes(['snsapi_userinfo']);
             }
             $app->oauth->redirect()->send();
             die;
