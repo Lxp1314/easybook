@@ -27,6 +27,7 @@ $jsApis = [
     'chooseImage',
     'previewImage',
     'uploadImage',
+    'getLocalImgData',
     'downloadImage',
     'translateVoice',
     'getNetworkType',
