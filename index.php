@@ -134,9 +134,9 @@ $jsApis = [
             });
             //判断是否是wkwebview
             if(window.wxjs_is_wkwebview){
-                document.getElementById("input1").value = 'true';
+                document.getElementById("input1").value = 'wxjs_is_wkwebview:true';
             }else{
-                document.getElementById("input1").value = 'false';
+                document.getElementById("input1").value = 'wxjs_is_wkwebview:false';
             }
         });
         
