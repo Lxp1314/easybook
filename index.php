@@ -275,7 +275,8 @@ if(isWechat()){
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                     $.ajax({
                         type: "post",
-                        url: "http://weixin.windmax.cn/api/index.php?action=wx_image_upload&media_id="+serverId,
+                        url: "http://weixin.windmax.cn/api/index.php",
+                        contentType: "application/x-www-form-urlencoded",
                         dataType: "json",
                         async: true,
                         data: {
