@@ -295,7 +295,7 @@ $jsApis = [
     <button onclick="showOneId()">显示localId</button>
     <button onclick="showOneBase64()">显示base64</button>
     <button onclick="openAddress()">打开地址</button>
-    <button onclick="openLocation()">打开地址</button>
+    <button onclick="openLocation()">获取位置</button>
     <button onclick="alertWk()">查看Wk</button>
     <div id="info" style="color:white;width:100%;word-break:break-all;word-wrap:break-word;"></div>
 </body>
