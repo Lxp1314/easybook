@@ -230,10 +230,44 @@ $jsApis = [
                 localId: document.getElementById('inputOne').value,
                 success: function(res) {
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                    if(window.)
                     document.getElementById("imgOne").src = localData;
                     document.getElementById("info").innerText = localData;
                 }
             });
+        }
+        function openAddress(){
+            wx.openAddress({
+                success: function (res) {
+                    var userName = res.userName; // 收货人姓名
+                    var postalCode = res.postalCode; // 邮编
+                    var provinceName = res.provinceName; // 国标收货地址第一级地址（省）
+                    var cityName = res.cityName; // 国标收货地址第二级地址（市）
+                    var countryName = res.countryName; // 国标收货地址第三级地址（国家）
+                    var detailInfo = res.detailInfo; // 详细收货地址信息
+                    var nationalCode = res.nationalCode; // 收货地址国家码
+                    var telNumber = res.telNumber; // 收货人手机号码
+
+                    document.getElementById("info").innerHTML = JSON.stringify(res);
+                }
+            });
+        }
+
+        function openLocation(){
+            wx.getLocation({
+            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+                    document.getElementById("info").innerHTML = JSON.stringify(res);
+                }
+            });
+        }
+        function alertWk(){
+            alert(window.wxjs_is_wkwebview);
+            alert(window.__wxjs_is_wkwebview);
         }
     </script>
     <img style="width:21px; height:21px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADJmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjhFRDJCOTdCMjQ4MTFFN0FGOEJENDVENTkwOUNEODUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjhFRDJCOThCMjQ4MTFFN0FGOEJENDVENTkwOUNEODUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2OEVEMkI5NUIyNDgxMUU3QUY4QkQ0NUQ1OTA5Q0Q4NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2OEVEMkI5NkIyNDgxMUU3QUY4QkQ0NUQ1OTA5Q0Q4NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhgYypYAAAJWSURBVDhPtVNNaxNRFD1vkklSktiFkSotUlBwJ4IrRVx04cqlG/+DC/f6g6TtTgpdtLhyIyqKCF1EcGG7qDE2mU4ymZnM89z33jQZMalCPHB5H3Pveed+jNIEFgzPrX+PwUcgPnSHP+PfSaP2uaTz0w+oyq8DtevugshSSim7g0PyASit8b5ljvNJxxGw9xB4sMvAL0D4lqQBP5T42CrQ2AB0HzjdBJaf2Bji3EZ1E/JFGio9Rg1dNOPXDOJjQpyFwMXHQJUPTGEmaTIGDjoUxKqLlWgeTdFWgm1U0q88+EBKpevPuVcuck6j3hyxH5m1iA+MaDHLmVL5YeMRL6h28JOX/PDjlYuyKCjthBo9+orfkAQxv2itUHEqfYrJFV9QAVrBLvzOPtC6y+hLQPsFcPvZhPT9kUaSaXhMQxJRinuuUaZ4r85KUBZiWpWZ1zkYfv8bLne3gBtPgR7HbfmaJX1HwiC2zgXwLFejsd2Uc1KuVfapJiXl91ZV40pDPC3UKNV6p62xxNGTa5EtWrXZWbD3GPNoSEUxHYVUyMVL6n6fY5rD+z6wTZAahrTB2arMXtZhqk2zIp7FT1bx6Y9ozFD6cMo1B99iYGIJhoZAzAZP9so8LGaIuQpZn5MgZeuRfGqi4K02eckPEesmAUaRC87PQpYyxTwjURU6k70IqrO+OYzSm5yGE74mtZFAGal8RgsKp8xmBhyzfPeKP9RkpF5yGj7xD1piA6ZTmQVOnyHduArcmUUqOGHBP5NYnOcRS0SzAtxasVPwOwqki4Kp6aLxH0iBXzuaSW03c1cYAAAAAElFTkSuQmCC" />
@@ -260,6 +294,9 @@ $jsApis = [
     <button onclick="chooseOne()">选择一张</button>
     <button onclick="showOneId()">显示localId</button>
     <button onclick="showOneBase64()">显示base64</button>
+    <button onclick="openAddress()">打开地址</button>
+    <button onclick="openLocation()">打开地址</button>
+    <button onclick="alertWk()">查看Wk</button>
     <div id="info" style="color:white;width:100%;word-break:break-all;word-wrap:break-word;"></div>
 </body>
 </html>
