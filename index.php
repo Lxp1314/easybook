@@ -290,6 +290,7 @@ if(isWechat()){
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log("请求数据异常：" + errorThrown);
+                            alert(errorThrown);
                         }
                     });
                 }
