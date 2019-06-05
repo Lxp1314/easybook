@@ -365,10 +365,10 @@ if(isWechat()){
                 success: function(res) {
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                     if(isAndroid()){
-                        var base = new Base64();
-                        var result = "data:image/jpeg;base64," + base.encode(localData);
-                        document.getElementById("imgOne").src = result;
-                        document.getElementById("info").innerText = result;
+                        // var base = new Base64();
+                        // var result = "data:image/jpeg;base64," + base.encode(localData);
+                        document.getElementById("imgOne").src = "data:image/jpeg;base64," + localData;
+                        document.getElementById("info").innerText = "data:image/jpeg;base64," + localData;
                     }else{
                         document.getElementById("imgOne").src = localData;
                         document.getElementById("info").innerText = localData;
