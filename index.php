@@ -364,7 +364,7 @@ if(isWechat()){
                 localId: document.getElementById('inputOne').value,
                 success: function(res) {
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-                    if(isAndroid(){
+                    if(isAndroid()){
                         var base = new Base64();
                         var result = "data:image/jpeg;base64," + base.encode(localData);
                         document.getElementById("imgOne").src = result;
