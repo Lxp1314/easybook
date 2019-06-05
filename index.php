@@ -230,7 +230,7 @@ $jsApis = [
                 localId: document.getElementById('inputOne').value,
                 success: function(res) {
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
-                    if(window.)
+                    // if(window.)
                     document.getElementById("imgOne").src = localData;
                     document.getElementById("info").innerText = localData;
                 }
