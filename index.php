@@ -260,6 +260,6 @@ $jsApis = [
     <button onclick="chooseOne()">选择一张</button>
     <button onclick="showOneId()">显示localId</button>
     <button onclick="showOneBase64()">显示base64</button>
-    <div id="info"></div>
+    <div id="info" style="color:white;"></div>
 </body>
 </html>
