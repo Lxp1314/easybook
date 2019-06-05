@@ -209,9 +209,34 @@ $jsApis = [
         function getImg1Src(){
             alert(document.getElementById("img0").src);
         }
+
+        function chooseOne(){
+            wx.chooseImage({
+                count: 1, // 默认9，一次可选择几张照片
+                sizeType: ['original'], // 可以指定是原图original还是压缩图compressed，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function (res) {
+                    var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                    document.getElementById("inputOne").src = localIds[0];
+                }
+            });
+        }
+        function showOneId(){
+            document.getElementById('imgOne').src = document.getElementById('inputOne').value;
+        }
+        function showOneBase64(){
+            wx.getLocalImgData({
+                localId: document.getElementById('inputOne').value,
+                success: function(res) {
+                    var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
+                    document.getElementById("imgOne").src = localData;
+                }
+            });
+        }
     </script>
     <img style="width:21px; height:21px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADJmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjhFRDJCOTdCMjQ4MTFFN0FGOEJENDVENTkwOUNEODUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjhFRDJCOThCMjQ4MTFFN0FGOEJENDVENTkwOUNEODUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2OEVEMkI5NUIyNDgxMUU3QUY4QkQ0NUQ1OTA5Q0Q4NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2OEVEMkI5NkIyNDgxMUU3QUY4QkQ0NUQ1OTA5Q0Q4NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhgYypYAAAJWSURBVDhPtVNNaxNRFD1vkklSktiFkSotUlBwJ4IrRVx04cqlG/+DC/f6g6TtTgpdtLhyIyqKCF1EcGG7qDE2mU4ymZnM89z33jQZMalCPHB5H3Pveed+jNIEFgzPrX+PwUcgPnSHP+PfSaP2uaTz0w+oyq8DtevugshSSim7g0PyASit8b5ljvNJxxGw9xB4sMvAL0D4lqQBP5T42CrQ2AB0HzjdBJaf2Bji3EZ1E/JFGio9Rg1dNOPXDOJjQpyFwMXHQJUPTGEmaTIGDjoUxKqLlWgeTdFWgm1U0q88+EBKpevPuVcuck6j3hyxH5m1iA+MaDHLmVL5YeMRL6h28JOX/PDjlYuyKCjthBo9+orfkAQxv2itUHEqfYrJFV9QAVrBLvzOPtC6y+hLQPsFcPvZhPT9kUaSaXhMQxJRinuuUaZ4r85KUBZiWpWZ1zkYfv8bLne3gBtPgR7HbfmaJX1HwiC2zgXwLFejsd2Uc1KuVfapJiXl91ZV40pDPC3UKNV6p62xxNGTa5EtWrXZWbD3GPNoSEUxHYVUyMVL6n6fY5rD+z6wTZAahrTB2arMXtZhqk2zIp7FT1bx6Y9ozFD6cMo1B99iYGIJhoZAzAZP9so8LGaIuQpZn5MgZeuRfGqi4K02eckPEesmAUaRC87PQpYyxTwjURU6k70IqrO+OYzSm5yGE74mtZFAGal8RgsKp8xmBhyzfPeKP9RkpF5yGj7xD1piA6ZTmQVOnyHduArcmUUqOGHBP5NYnOcRS0SzAtxasVPwOwqki4Kp6aLxH0iBXzuaSW03c1cYAAAAAElFTkSuQmCC" />
     <input type="text" id="input1" value="123" />
+
     <img id="img0" />
     <img id="img1" />
     <img id="img2" />
@@ -228,7 +253,11 @@ $jsApis = [
     <button onclick="uploadImage(0)">上传</button>
     <button onclick="uploadBase64Image()">上传Base64</button>
     <button onclick="getImg1Src()">获取img0的src</button>
-    
+    <img id="imgOne" />
+    <input type="text" id="inputOne" value="" />
+    <button onclick="chooseOne()">选择一张</button>
+    <button onclick="showOneId()">显示localId</button>
+    <button onclick="showOneBase64()">显示base64</button>
     <div id="info"></div>
 </body>
 </html>
