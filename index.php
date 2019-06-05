@@ -4,49 +4,49 @@ require_once __DIR__ . '/weixin/oauth.php';
 
 if(isWechat()){
     $user = Oauth::login('/index.php');
+
+    $app = require __DIR__.'/weixin/app.php';
+    $jsApis = [
+        'updateAppMessageShareData', 
+        'updateTimelineShareData', 
+        'onMenuShareWeibo', 
+        'onMenuShareQZone',
+        'startRecord',
+        'stopRecord',
+        'onVoiceRecordEnd',
+        'playVoice',
+        'pauseVoice',
+        'stopVoice',
+        'onVoicePlayEnd',
+        'uploadVoice',
+        'downloadVoice',
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'getLocalImgData',
+        'downloadImage',
+        'translateVoice',
+        'getNetworkType',
+        'openLocation',
+        'getLocation',
+        'hideOptionMenu',
+        'showOptionMenu',
+        'hideMenuItems',
+        'showMenuItems',
+        'hideAllNonBaseMenuItem',
+        'showAllNonBaseMenuItem',
+        // 'closeWindow',
+        'scanQRCode',
+        'chooseWXPay',
+        'openProductSpecificView',
+        'addCard',
+        'chooseCard',
+        'openCard',
+    ];
 }else{
     // echo '非微信端';
-    die('请在微信端打开页面');
+    // die('请在微信端打开页面');
 }
-
-$app = require __DIR__.'/weixin/app.php';
-$jsApis = [
-    'updateAppMessageShareData', 
-    'updateTimelineShareData', 
-    'onMenuShareWeibo', 
-    'onMenuShareQZone',
-    'startRecord',
-    'stopRecord',
-    'onVoiceRecordEnd',
-    'playVoice',
-    'pauseVoice',
-    'stopVoice',
-    'onVoicePlayEnd',
-    'uploadVoice',
-    'downloadVoice',
-    'chooseImage',
-    'previewImage',
-    'uploadImage',
-    'getLocalImgData',
-    'downloadImage',
-    'translateVoice',
-    'getNetworkType',
-    'openLocation',
-    'getLocation',
-    'hideOptionMenu',
-    'showOptionMenu',
-    'hideMenuItems',
-    'showMenuItems',
-    'hideAllNonBaseMenuItem',
-    'showAllNonBaseMenuItem',
-    // 'closeWindow',
-    'scanQRCode',
-    'chooseWXPay',
-    'openProductSpecificView',
-    'addCard',
-    'chooseCard',
-    'openCard',
-];
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,9 +57,6 @@ $jsApis = [
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <title>测试页面</title>
-
-    <link rel="stylesheet" href="./css/bulma.min.css">
-    <link rel="stylesheet" href="./css/friend-circle.css">
 
     <script src="./js/plugin/vue/vue.js"></script>
     <script src="./js/plugin/jquery/jquery-3.3.1.min.js"></script>
@@ -217,7 +214,9 @@ _utf8_decode = function (utftext) {
  return string; 
 } 
 }
-
+<?php 
+if(isWechat()){
+?>
         wx.config(<?php echo $app->js->config($jsApis, true) ?>);
         wx.ready(function(){
             // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容（1.4.0）
@@ -367,7 +366,7 @@ _utf8_decode = function (utftext) {
                     var localData = res.localData; // localData是图片的base64数据，可以用img标签显示
                     if(isAndroid(){
                         var base = new Base64();
-                        var result = base.encode(localData);
+                        var result = "data:image/jpeg;base64," + base.encode(localData);
                         document.getElementById("imgOne").src = result;
                         document.getElementById("info").innerText = result;
                     }else{
@@ -407,6 +406,8 @@ _utf8_decode = function (utftext) {
                 }
             });
         }
+<?php } ?>
+        
         function alertWk(){
             alert(window.wxjs_is_wkwebview);
             alert(window.__wxjs_is_wkwebview);
