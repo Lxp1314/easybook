@@ -58,6 +58,6 @@ class WeixinEvent{
      * 扫码事件
      */
     private function scan(){
-        return '扫码事件';
+        return '扫码事件：' + json_encode($this->message);
     }
 }

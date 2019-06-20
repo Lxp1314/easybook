@@ -208,6 +208,7 @@ if(isWechat()){
                             //     media_id: serverId
                             // },
                             beforeSend: function () {
+                                
                             },
                             success: function (json) {
                                 alert(json.data);
