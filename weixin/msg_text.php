@@ -98,6 +98,8 @@ EOF;
     private function msg3(){
         //生成一个永久二维码
         $wx_qrcode_content = $this->app->qrcode->forever($this->message->FromUserName);
+        //发送二维码返回内容到客服信息
+        $this->app->staff->message('二维码生成内容：' . json_encode($wx_qrcode_content))->to($this->message->FromUserName)->send();
         // $qrcode_url = $wx_qrcode_content->url;
         $qrcode_url = $this->app->qrcode->url($wx_qrcode_content->ticket);//ticket换取二维码图片地址
 
