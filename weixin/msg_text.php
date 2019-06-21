@@ -25,6 +25,8 @@ class WeixinText{
                 return $this->msg3();
             case '用户信息':
                 return $this->msg4();
+            case '二维码临时':
+                return $this->msg5();
             default:
                 return "收到消息：" . $this->message->Content;
         }
@@ -131,5 +133,31 @@ EOF;
             ->send();
         
         return $user->nickname;
+    }
+
+    /**
+     * 二维码临时
+     */
+    private function msg5(){
+        //生成一个临时二维码 temporary('场景值', 有效时间)，最大30天
+        $wx_qrcode_content = $this->app->qrcode->temporary('scend-' . $this->message->FromUserName, 3600*24*30);
+        //发送二维码返回内容到客服信息
+        $this->app->staff->message('二维码生成内容：' . json_encode($wx_qrcode_content))->to($this->message->FromUserName)->send();
+        // $qrcode_url = $wx_qrcode_content->url;
+        $qrcode_url = $this->app->qrcode->url($wx_qrcode_content->ticket);//ticket换取二维码图片地址
+
+        $content = file_get_contents($qrcode_url); // 得到二进制图片内容
+        $qrcode_path = '../storages/images/promote_qrcode/tmp_' . $this->message->FromUserName . '.jpg';
+        file_put_contents($qrcode_path, $content); // 写入文件
+
+        /*-- 上传到素材 --*/
+        $res_media = $this->app->material_temporary->uploadImage($qrcode_path);
+        $res_media = json_decode($res_media, true);
+        $media_id = $res_media['media_id'];
+
+        //输出媒体id
+        $this->app->staff->message('二维码上传到素材的媒体id：'.$media_id)->to($this->message->FromUserName)->send();
+
+        return new Image(['media_id' => $media_id]);
     }
 }
