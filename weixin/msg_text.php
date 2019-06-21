@@ -113,7 +113,7 @@ EOF;
         $media_id = $res_media['media_id'];
 
         //输出媒体id
-        $this->app->staff->message($media_id)->to($this->message->FromUserName)->send();
+        $this->app->staff->message('二维码上传到素材的媒体id：'.$media_id)->to($this->message->FromUserName)->send();
 
         return new Image(['media_id' => $media_id]);
     }
